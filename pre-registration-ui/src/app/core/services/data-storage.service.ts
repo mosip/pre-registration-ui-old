@@ -426,7 +426,7 @@ export class DataStorageService {
     return this.httpClient.get(url);
   }
 
-  sendOtp(userId: string) {
+  sendOtp(userId: string,langCode: string) {
     const req = {
       langCode: langCode,
       userId: userId,
