@@ -43,7 +43,10 @@ jobs:
       - name: run sonar analysis
         run: |
           cd "./${{env.SERVICE_LOCATION}}"
-          text="sonar.host.url=https://sonarcloud.io\nsonar.login=${{ secrets.SONAR_TOKEN }}\nsonar.projectKey=mosip_${{ github.event.repository.name }}\nsonar.organization=${{ secrets.ORG_KEY }}\nsonar.sourceEncoding=UTF-8\nsonar.sources=src\nsonar.exclusions=**/node_modules/**\nsonar.tests=src\nsonar.test.inclusions=**/*.spec.ts" && echo $text >> sonar-project.properties
+          sed -i 's/sonar.login=/sonar.login=${{ secrets.SONAR_TOKEN }}/g' sonar-project.properties
+          sed -i 's/sonar.projectKey=/mosip_${{ github.event.repository.name }}/g' sonar-project.properties
+          sed -i 's/sonar.organization=/sonar.organization=${{ secrets.ORG_KEY }}/g' sonar-project.properties
+#          text="sonar.host.url=https://sonarcloud.io\nsonar.login=${{ secrets.SONAR_TOKEN }}\nsonar.projectKey=mosip_${{ github.event.repository.name }}\nsonar.organization=${{ secrets.ORG_KEY }}\nsonar.sourceEncoding=UTF-8\nsonar.sources=src\nsonar.exclusions=**/node_modules/**\nsonar.tests=src\nsonar.test.inclusions=**/*.spec.ts" && echo $text >> sonar-project.properties
           npm install sonar-scanner && npm run sonar
 
       - name: Build image
