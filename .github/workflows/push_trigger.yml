@@ -40,7 +40,7 @@ jobs:
           # Strip git ref prefix from version
           echo "BRANCH_NAME=$(echo ${{ github.ref }} | sed -e 's,.*/\(.*\),\1,')" >> $GITHUB_ENV
 
-      -name: Run Sonar Analysis
+      - name: run sonar analysis
         run: |
           cd "./${{env.SERVICE_LOCATION}}"
           text="sonar.host.url=https://sonarcloud.io\nsonar.login=${{ secrets.SONAR_TOKEN }}\nsonar.projectKey=mosip_${{ github.event.repository.name }}\nsonar.organization=${{ secrets.ORG_KEY }}\nsonar.sourceEncoding=UTF-8\nsonar.sources=src\nsonar.exclusions=**/node_modules/**\nsonar.tests=src\nsonar.test.inclusions=**/*.spec.ts" && echo $text >> sonar-project.properties
