@@ -20,7 +20,7 @@ To start off we will be needing a Virtual Machine (VM) of at least 1 core proces
   - git clone https://github.com/mosip/mosip.git (to clone the source code repository from git)
 - Build the code – Follow the following steps to build the source code on your system.
   - Navigate to the pre-registration-ui directory inside the cloned repository. Then run the following command in that directory
-  - ng build --prod --base-href . (to build the code)
+  -  ng build --prod --base-href . --output-path=dist (to build the code)
 - Build Docker Image – Follow the following steps to build docker image on your system.
   - docker build -t \&lt;name\&gt; . (to build the docker image, replace \&lt;name\&gt; with the name of the image you want, &quot;.&quot; Signifies the current directory from where the docker file has to be read.
 - Run the docker image – Follow the following steps to build docker image on your system.
